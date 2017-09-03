@@ -26,4 +26,8 @@ public class UserDao {
 		TypedQuery<User> allQuery = em.createQuery(all);
 		return allQuery.getResultList();
 	}
+	
+	public void save(User user) {
+		em.persist(user);
+	}
 }

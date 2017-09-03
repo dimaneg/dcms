@@ -1,0 +1,21 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+    template="/templates/page_template.xhtml">
+    <ui:define name="content">
+    	<h3>User Panel</h3>
+    	
+    	<p:outputLabel value="First name"></p:outputLabel>
+    	<p:inputText value="#{userBean.firstName}"></p:inputText>
+    	<br/>
+    	<p:outputLabel value="Last name"></p:outputLabel>
+    	<p:inputText value="#{userBean.lastName}"></p:inputText>
+    	<br/>
+    	<p:outputLabel value="Email"></p:outputLabel>
+    	<p:inputText value="#{userBean.email}"></p:inputText>
+    	
+    	<p:commandButton value="Save" process="@form" update="@form" action="#{userBean.save()}"></p:commandButton>
+    </ui:define>
+</ui:composition>
