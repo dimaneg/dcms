@@ -7,7 +7,7 @@ import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 
-import com.dimaneg.jpa.dao.UserDao;
+import com.dimaneg.jpa.dao.UserDAO;
 import com.dimaneg.jpa.dao.UserService;
 import com.dimaneg.jpa.entity.User;
 
@@ -38,7 +38,7 @@ public class HomeBean {
 
 	public List<User> getUsers() {
 		List<User> users = new ArrayList<>();
-		UserDao userDao = userService.getUserDao();
+		UserDAO userDao = userService.getUserDao();
 		users = userDao.findAll();
 		
 		return users;

@@ -10,7 +10,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.PersistenceContextType;
 
-import com.dimaneg.jpa.dao.UserDao;
+import com.dimaneg.jpa.dao.UserDAO;
 import com.dimaneg.jpa.dao.UserService;
 import com.dimaneg.jpa.entity.User;
 

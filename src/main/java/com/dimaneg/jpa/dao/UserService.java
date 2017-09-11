@@ -16,8 +16,8 @@ public class UserService {
 		getUserDao().save(user);
 	}
 	
-	public UserDao getUserDao() {
-		UserDao userDao = new UserDao(em);
+	public UserDAO getUserDao() {
+		UserDAO userDao = new UserDAO(em);
 		return userDao;
 	}
 }
