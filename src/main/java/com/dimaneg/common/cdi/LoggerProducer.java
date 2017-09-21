@@ -8,6 +8,8 @@ import org.slf4j.LoggerFactory;
 
 import com.dimaneg.common.api.Log;
 import com.dimaneg.common.api.PerformanceLog;
+import com.dimaneg.common.api.PerformanceLoggerImpl;
+import com.dimaneg.common.api.PerformanceLogger;
 
 public class LoggerProducer {
 
@@ -16,10 +18,11 @@ public class LoggerProducer {
 	public Logger createLog(InjectionPoint injectionPoint) {
 		return LoggerFactory.getLogger(injectionPoint.getMember().getDeclaringClass().getName());
 	}
-	
+
 	@Produces
 	@PerformanceLog
-	public Logger createPerformanceLog(InjectionPoint injectionPoint) {
-		return LoggerFactory.getLogger("perf_" + injectionPoint.getMember().getDeclaringClass().getName());
+	public PerformanceLogger createPerformanceLog(InjectionPoint injectionPoint) {
+		return new PerformanceLoggerImpl(
+				LoggerFactory.getLogger("perf_" + injectionPoint.getMember().getDeclaringClass().getName()));
 	}
 }

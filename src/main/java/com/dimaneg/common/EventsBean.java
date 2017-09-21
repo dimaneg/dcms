@@ -13,6 +13,7 @@ import com.dimaneg.common.api.Failure;
 import com.dimaneg.common.api.FailureSelector;
 import com.dimaneg.common.api.Log;
 import com.dimaneg.common.api.PerformanceLog;
+import com.dimaneg.common.api.PerformanceLogger;
 import com.dimaneg.common.api.Qualified;
 
 @Named("eventsBean")
@@ -27,7 +28,7 @@ public class EventsBean {
 	
 	@Inject
 	@PerformanceLog
-	private Logger perfLog;
+	private PerformanceLogger perfLog;
     
 	@Inject
 	private Event<MyEvent> eventProducer;
@@ -37,10 +38,16 @@ public class EventsBean {
 		
 		perfLog.debug("A perfLog message ---");
 		
+		perfLog.opTime("OP_X01", 901);
+		perfLog.opTime("OP_X02", 2345);
+		perfLog.methodTime(1001);
+		
 		eventProducer.fire(new MyEvent());
 	}
 	
 	public void fireMyEventB() {
+		perfLog.methodTime(4091);
+		
 		eventProducer.select(new FailureSelector("abc")).fire(new MyEvent());
 	}
 	
