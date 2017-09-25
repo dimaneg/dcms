@@ -1,5 +1,7 @@
 package com.dimaneg.common;
 
+import java.io.IOException;
+
 import javax.ejb.Stateful;
 import javax.enterprise.event.Event;
 import javax.enterprise.event.Observes;
@@ -11,7 +13,9 @@ import org.slf4j.LoggerFactory;
 
 import com.dimaneg.common.api.Failure;
 import com.dimaneg.common.api.FailureSelector;
+import com.dimaneg.common.api.InterceptMe;
 import com.dimaneg.common.api.Log;
+import com.dimaneg.common.api.PerfMetrics;
 import com.dimaneg.common.api.PerformanceLog;
 import com.dimaneg.common.api.PerformanceLogger;
 import com.dimaneg.common.api.Qualified;
@@ -33,6 +37,7 @@ public class EventsBean {
 	@Inject
 	private Event<MyEvent> eventProducer;
 
+	@InterceptMe
 	public void fireMyEventA() {
 		log.info("A disparar o evento A");
 		
@@ -45,6 +50,7 @@ public class EventsBean {
 		eventProducer.fire(new MyEvent());
 	}
 	
+	//@PerfMetrics
 	public void fireMyEventB() {
 		perfLog.methodTime(4091);
 		
@@ -66,4 +72,9 @@ public class EventsBean {
 //	public void observesEventC(@Observes @Qualified MyEvent event) {
 //		System.out.println("Received a event - ()");
 //	}
+	
+	public void provocarErro1() throws Exception {
+		log.info("Vamos lançar uma Exception !!!");
+		throw new IOException();
+	}
 }
