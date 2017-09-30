@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:pe="http://primefaces.org/ui/extensions">
+
+<h:head>
+	<title>Script</title>
+</h:head>
+<h:body>
+	<h3>Scripting</h3>
+	<h:form>
+
+		<pe:codeMirror id="editor" mode="groovy" theme="eclipse"
+			readOnly="false" matchBrackets="true"
+			widgetVar="groovyEditor" fixedGutter="true"
+			value="#{scriptBean.scriptContent}" lineNumbers="true"
+			completeMethod="#{scriptBean.complete}"
+			extraKeys="{'F11': function(cm) {setFullscreen('codeArea');},
+			 					        'Ctrl-Space': function(cm) {PF('groovyEditor').complete();}}" />
+		
+		<br/>
+
+		<p:commandButton value="Avaliar" action="#{scriptBean.avaliar()}" process="@form" update="@form"></p:commandButton>
+		
+		<br/>
+		
+		<div>
+			<p:panel>
+				#{scriptBean.scriptOutput}
+			</p:panel>
+		</div>
+	</h:form>
+
+</h:body>
+</html>
