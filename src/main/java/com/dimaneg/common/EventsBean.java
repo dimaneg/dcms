@@ -74,7 +74,7 @@ public class EventsBean {
 //	}
 	
 	public void provocarErro1() throws Exception {
-		log.info("Vamos lançar uma Exception !!!");
+		log.info("Vamos lanÃ§ar uma Exception !!!");
 		throw new IOException();
 	}
 }
